@@ -3,7 +3,6 @@ package dal.jpa.entities;
 import java.io.Serializable;
 import javax.persistence.*;
 import java.util.Date;
-import java.util.List;
 
 
 /**
@@ -17,6 +16,8 @@ public class Employee implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+//	@SequenceGenerator(name="EMPLOYEES_EMPNO_GENERATOR", sequenceName="JPA_DEMO_SEQUENCE")
+//	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="EMPLOYEES_EMPNO_GENERATOR")
 	@Column(name="emp_no")
 	private int empNo;
 
@@ -27,6 +28,7 @@ public class Employee implements Serializable {
 	@Column(name="first_name")
 	private String firstName;
 
+	@Column(columnDefinition="ENUM('M','F')")
 	private String gender;
 
 	@Temporal(TemporalType.DATE)
@@ -35,22 +37,6 @@ public class Employee implements Serializable {
 
 	@Column(name="last_name")
 	private String lastName;
-
-	//bi-directional many-to-one association to DeptEmp
-	@OneToMany(mappedBy="employee")
-	private List<DeptEmp> deptEmps;
-
-	//bi-directional many-to-one association to DeptManager
-	@OneToMany(mappedBy="employee")
-	private List<DeptManager> deptManagers;
-
-	//bi-directional many-to-one association to Salary
-	@OneToMany(mappedBy="employee")
-	private List<Salary> salaries;
-
-	//bi-directional many-to-one association to Title
-	@OneToMany(mappedBy="employee")
-	private List<Title> titles;
 
 	public Employee() {
 	}
@@ -101,94 +87,6 @@ public class Employee implements Serializable {
 
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
-	}
-
-	public List<DeptEmp> getDeptEmps() {
-		return this.deptEmps;
-	}
-
-	public void setDeptEmps(List<DeptEmp> deptEmps) {
-		this.deptEmps = deptEmps;
-	}
-
-	public DeptEmp addDeptEmp(DeptEmp deptEmp) {
-		getDeptEmps().add(deptEmp);
-		deptEmp.setEmployee(this);
-
-		return deptEmp;
-	}
-
-	public DeptEmp removeDeptEmp(DeptEmp deptEmp) {
-		getDeptEmps().remove(deptEmp);
-		deptEmp.setEmployee(null);
-
-		return deptEmp;
-	}
-
-	public List<DeptManager> getDeptManagers() {
-		return this.deptManagers;
-	}
-
-	public void setDeptManagers(List<DeptManager> deptManagers) {
-		this.deptManagers = deptManagers;
-	}
-
-	public DeptManager addDeptManager(DeptManager deptManager) {
-		getDeptManagers().add(deptManager);
-		deptManager.setEmployee(this);
-
-		return deptManager;
-	}
-
-	public DeptManager removeDeptManager(DeptManager deptManager) {
-		getDeptManagers().remove(deptManager);
-		deptManager.setEmployee(null);
-
-		return deptManager;
-	}
-
-	public List<Salary> getSalaries() {
-		return this.salaries;
-	}
-
-	public void setSalaries(List<Salary> salaries) {
-		this.salaries = salaries;
-	}
-
-	public Salary addSalary(Salary salary) {
-		getSalaries().add(salary);
-		salary.setEmployee(this);
-
-		return salary;
-	}
-
-	public Salary removeSalary(Salary salary) {
-		getSalaries().remove(salary);
-		salary.setEmployee(null);
-
-		return salary;
-	}
-
-	public List<Title> getTitles() {
-		return this.titles;
-	}
-
-	public void setTitles(List<Title> titles) {
-		this.titles = titles;
-	}
-
-	public Title addTitle(Title title) {
-		getTitles().add(title);
-		title.setEmployee(this);
-
-		return title;
-	}
-
-	public Title removeTitle(Title title) {
-		getTitles().remove(title);
-		title.setEmployee(null);
-
-		return title;
 	}
 
 }
