@@ -1,6 +1,7 @@
 package dal.jpa.dao;
 
 import dal.jpa.entities.Employee;
+import dal.jpa.factories.DatabaseConnection;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -8,14 +9,6 @@ import java.util.List;
 
 // find more JPQL examples at https://en.wikibooks.org/wiki/Java_Persistence/JPQL
 public class EmployeesJpqlDao {
-
-    public static final String JPA_DEMO_PERSISTENCE_UNIT = "JPA_Demo";
-
-    public static EntityManagerFactory entityManagerFactory;
-
-    static {
-        entityManagerFactory = Persistence.createEntityManagerFactory(JPA_DEMO_PERSISTENCE_UNIT);
-    }
 
     // There's no INSERT statement in JPQL.
     // The workaround is to use createNativeQuery()
@@ -29,7 +22,7 @@ public class EmployeesJpqlDao {
         int empNo = getNextAvailableEmployeeNumber();
         String query = "INSERT INTO employees (emp_no, birth_date, first_name, last_name, gender, hire_date) " +
                 "VALUES (?,?,?,?,?,?)";
-        EntityManager entitymanager = entityManagerFactory.createEntityManager();
+        EntityManager entitymanager = DatabaseConnection.getInstance().createEntityManager();
         EntityTransaction entityTransaction = entitymanager.getTransaction();
         entityTransaction.begin();
         entitymanager.createNativeQuery(query)
@@ -47,7 +40,7 @@ public class EmployeesJpqlDao {
 
     public static Employee selectEmployeeWhereEmployeeNumber(int employeeNumber) {
         String query = "SELECT e FROM Employee e WHERE e.empNo=" + employeeNumber + "";
-        EntityManager entitymanager = entityManagerFactory.createEntityManager();
+        EntityManager entitymanager = DatabaseConnection.getInstance().createEntityManager();
         Employee employee = entitymanager
                 .createQuery(query, Employee.class)
                 .getSingleResult();
@@ -57,7 +50,7 @@ public class EmployeesJpqlDao {
 
     public static List<Employee> selectEmployeeWhereFirstName(String firstName) {
         String query = "SELECT e FROM Employee e WHERE e.firstName='" + firstName + "'";
-        EntityManager entitymanager = entityManagerFactory.createEntityManager();
+        EntityManager entitymanager = DatabaseConnection.getInstance().createEntityManager();
         List<Employee> employees = entitymanager
                 .createQuery(query)
                 .getResultList();
@@ -67,7 +60,7 @@ public class EmployeesJpqlDao {
 
     public static List<Employee> selectEmployeeWhereFirstNameAndLastName(String firstName, String lastName) {
         String query = "SELECT e FROM Employee e WHERE e.firstName='" + firstName + "' AND e.lastName='" + lastName + "'";
-        EntityManager entitymanager = entityManagerFactory.createEntityManager();
+        EntityManager entitymanager = DatabaseConnection.getInstance().createEntityManager();
         List<Employee> employees = entitymanager.createQuery(query).getResultList();
         entitymanager.close();
         return employees;
@@ -75,7 +68,7 @@ public class EmployeesJpqlDao {
 
     public static List<Employee> selectEmployeeWhereFirstNameLike(String firstName) {
         String query = "SELECT e FROM Employee e WHERE e.firstName LIKE '%" + firstName + "%'";
-        EntityManager entitymanager = entityManagerFactory.createEntityManager();
+        EntityManager entitymanager = DatabaseConnection.getInstance().createEntityManager();
         List<Employee> employees = entitymanager
                 .createQuery(query)
                 .getResultList();
@@ -92,7 +85,7 @@ public class EmployeesJpqlDao {
                 " SET e.lastName=:newLastName" +
                 " WHERE e.firstName=:firstName" +
                 " AND e.lastName=:lastName";
-        EntityManager entitymanager = entityManagerFactory.createEntityManager();
+        EntityManager entitymanager = DatabaseConnection.getInstance().createEntityManager();
         EntityTransaction entityTransaction = entitymanager.getTransaction();
         entityTransaction.begin();
         int updatedRowsCount = entitymanager.createQuery(query)
@@ -109,7 +102,7 @@ public class EmployeesJpqlDao {
         String query = "DELETE FROM Employee e" +
                 " WHERE e.firstName='" + firstName + "' "+
                 " AND e.lastName='" + lastName + "'";
-        EntityManager entitymanager = entityManagerFactory.createEntityManager();
+        EntityManager entitymanager = DatabaseConnection.getInstance().createEntityManager();
         int deletedRowsCount = entitymanager.createQuery(query).executeUpdate();
         entitymanager.close();
         return deletedRowsCount;
@@ -117,7 +110,7 @@ public class EmployeesJpqlDao {
 
     public static int deleteEmployeeWhereEmployeeNumber(int employeeNumber) {
         String query = "DELETE FROM Employee e WHERE e.empNo=:employeeNumber";
-        EntityManager entitymanager = entityManagerFactory.createEntityManager();
+        EntityManager entitymanager = DatabaseConnection.getInstance().createEntityManager();
         EntityTransaction entityTransaction = entitymanager.getTransaction();
         entityTransaction.begin();
         int deletedRowsCount = entitymanager.createQuery(query)
@@ -134,7 +127,7 @@ public class EmployeesJpqlDao {
 
     public static int getLastEmployeeNumber() {
         String query = "SELECT MAX(e.empNo) FROM Employee e";
-        EntityManager entitymanager = entityManagerFactory.createEntityManager();
+        EntityManager entitymanager = DatabaseConnection.getInstance().createEntityManager();
         EntityTransaction entityTransaction = entitymanager.getTransaction();
         entityTransaction.begin();
         int lastEmployeeNumberId = entitymanager.createQuery(query, Integer.class)
@@ -146,7 +139,7 @@ public class EmployeesJpqlDao {
 
     public static boolean isEmployeeInDatabaseByEmployeeNumber(int employeeNumber) {
         String query = "SELECT COUNT(e) FROM Employee e WHERE e.empNo=:employeeNumber";
-        EntityManager entitymanager = entityManagerFactory.createEntityManager();
+        EntityManager entitymanager = DatabaseConnection.getInstance().createEntityManager();
         long foundEmployeesCount = entitymanager.createQuery(query, Long.class)
                 .setParameter("employeeNumber", employeeNumber)
                 .getSingleResult();

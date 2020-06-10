@@ -12,7 +12,8 @@ import java.util.Date;
 import java.util.List;
 
 public class JpqlDemo {
-    DateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+
+    private DateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
     // CREATE
     @Test

@@ -18,6 +18,12 @@ import java.util.Date;
 public class Employee implements Serializable {
 	private static final long serialVersionUID = 1L;
 
+//	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+//	@SequenceGenerator(name="EMPLOYEES_EMPNO_GENERATOR", sequenceName="JPA_DEMO_SEQUENCE")
+//	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="EMPLOYEES_EMPNO_GENERATOR")
+//	@SequenceGenerator(name = "mySeqGen", sequenceName = "mySeq", initialValue = 600000, allocationSize = 10000)
+//	@GeneratedValue(generator = "mySeqGen")
+//	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Id
 	@Column(name="emp_no")
 	private int empNo;
