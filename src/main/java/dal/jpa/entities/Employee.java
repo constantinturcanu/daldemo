@@ -1,5 +1,7 @@
 package dal.jpa.entities;
 
+import lombok.ToString;
+
 import java.io.Serializable;
 import javax.persistence.*;
 import java.util.Date;
@@ -12,12 +14,11 @@ import java.util.Date;
 @Entity
 @Table(name="employees")
 @NamedQuery(name="Employee.findAll", query="SELECT e FROM Employee e")
+@ToString
 public class Employee implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-//	@SequenceGenerator(name="EMPLOYEES_EMPNO_GENERATOR", sequenceName="JPA_DEMO_SEQUENCE")
-//	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="EMPLOYEES_EMPNO_GENERATOR")
 	@Column(name="emp_no")
 	private int empNo;
 
