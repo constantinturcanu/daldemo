@@ -7,6 +7,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import java.time.LocalDate;
+import java.util.Random;
 
 public class JooqDemo {
 
@@ -62,7 +63,8 @@ public class JooqDemo {
         System.out.println("employeeToUpdate");
         System.out.println(employeeToUpdate);
 
-        String newLastName = "Jooq_Update";
+        Random random = new Random();
+        String newLastName = "Jooq_Update_" + random.nextInt(100);
         int updatedRowsCount = EmployeesJooqDao.updateEmployeeLastNameWhereEmployeeNumber(employeeNumber, newLastName);
         EmployeesRecord updatedEmployee = EmployeesJooqDao.selectEmployeeByEmployeeNumber(employeeNumber);
         System.out.println("updatedEmployee");
@@ -76,16 +78,15 @@ public class JooqDemo {
     @Test
     public void deleteEmployeeJooqTest() {
         Integer employeeNumber = EmployeesJooqDao.getLastEmployeeNumber();
-
+        System.out.println("The following employee will be deleted:");
+        System.out.println(EmployeesJooqDao.selectEmployeeByEmployeeNumber(employeeNumber));
         int numberOfDeletedRows = EmployeesJooqDao.deleteEmployee(employeeNumber);
 
         boolean isUserInDatabase = EmployeesJooqDao.isEmployeeInDatabase(employeeNumber);
 
         Assert.assertEquals(numberOfDeletedRows, 1, "Unexpected number of rows were deleted.");
         Assert.assertEquals(isUserInDatabase, false,
-                "The user with employee number " + employeeNumber + " is still in database.");
+                "The employee with employee number " + employeeNumber + " is still in database.");
     }
-
-
 
 }

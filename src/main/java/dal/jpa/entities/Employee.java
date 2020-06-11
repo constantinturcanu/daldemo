@@ -1,5 +1,6 @@
 package dal.jpa.entities;
 
+import lombok.Data;
 import lombok.ToString;
 
 import java.io.Serializable;
@@ -14,7 +15,6 @@ import java.util.Date;
 @Entity
 @Table(name="employees")
 @NamedQuery(name="Employee.findAll", query="SELECT e FROM Employee e")
-@ToString
 public class Employee implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -96,4 +96,20 @@ public class Employee implements Serializable {
 		this.lastName = lastName;
 	}
 
+	@Override
+	public String toString() {
+		return String.format("emp_no\t\t" +
+				"birth_date\t\t" +
+				"first_name\t\t" +
+				"last_name\t\t\t" +
+				"gender\t" +
+				"hire_date\t\t\n" +
+				"%s\t\t%s\t\t%s\t%s\t\t%s\t\t%s",
+				empNo,
+				birthDate,
+				firstName,
+				lastName,
+				gender,
+				hireDate);
+	}
 }

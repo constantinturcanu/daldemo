@@ -11,6 +11,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Random;
 
 public class JpaDemo {
 
@@ -53,13 +54,20 @@ public class JpaDemo {
     // UPDATE
     @Test
     public void updateEmployeeJpaTest() {
-        String newLastName = "Jpa_Update";
+        Random random = new Random();
+        String newLastName = "Jooq_Update_" + random.nextInt(100);
         int employeeNumber = EmployeesJpqlDao.getLastEmployeeNumber();
         Employee employeeToUpdate = EmployeesJpaDao.findEmployee(employeeNumber);
+        System.out.println("employeeToUpdate");
+        System.out.println(employeeToUpdate);
+
         employeeToUpdate.setLastName(newLastName);
         EmployeesJpaDao.updateEmployee(employeeNumber, employeeToUpdate);
 
         Employee updatedEmployee = EmployeesJpaDao.findEmployee(employeeNumber);
+
+        System.out.println("updatedEmployee");
+        System.out.println(updatedEmployee);
 
         Assert.assertEquals(updatedEmployee.getLastName(), newLastName, "The last name of employee was not updated.");
 

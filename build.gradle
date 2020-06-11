@@ -11,19 +11,12 @@ repositories {
 
 dependencies {
     testCompile group: 'org.testng', name: 'testng', version: '7.1.0'
-
     compile group: 'org.projectlombok', name: 'lombok', version: '1.18.12'
-
     compile group: 'mysql', name: 'mysql-connector-java', version: '5.1.49'
-
     compile group: 'org.hibernate', name: 'hibernate-core', version: '5.4.17.Final'
-
-//    compile group: 'org.hibernate.javax.persistence', name: 'hibernate-jpa-2.0-api', version: '1.0.1.Final'
-
     compile group: 'org.jooq', name: 'jooq', version: '3.13.2'
     compile group: 'org.jooq', name: 'jooq-codegen', version: '3.13.2'
     compile group: 'org.jooq', name: 'jooq-meta', version: '3.13.2'
-
 }
 
 test {

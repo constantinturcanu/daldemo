@@ -31,13 +31,7 @@ https://downloads.mysql.com/archives/get/p/3/file/mysql-connector-java-5.1.48.zi
 
 
 ```
-constantin@constantin-VirtualBox:~$ ls -l /usr/share/java/
-java-atk-wrapper.jar             juh.jar                          mysql-connector-java-8.0.20.jar  unoloader.jar
-java_defaults.mk                 jurt-6.4.2.jar                   ridl-6.4.2.jar                   
-java_uno.jar                     jurt.jar                         ridl.jar                         
-juh-6.4.2.jar                    libintl.jar                      unoloader-6.4.2.jar              
-constantin@constantin-VirtualBox:~$ cd /usr/share/java/
-constantin@constantin-VirtualBox:/usr/share/java$ ls -l mysql-connector-java-8.0.20.jar 
+constantin@constantin-VirtualBox:/usr/share/java$ ls -l /usr/share/java/mysql-connector-java-8.0.20.jar 
 -rw-r--r-- 1 root root 2385581 mar  9 12:46 mysql-connector-java-8.0.20.jar
 constantin@constantin-VirtualBox:/usr/share/java$
 ```
@@ -115,7 +109,7 @@ https://www.jooq.org/doc/3.13/manual/getting-started/tutorials/jooq-in-7-steps/j
 https://en.wikibooks.org/wiki/Java_Persistence/JPQL
 
 
-**Mapping SQL and Java Data Types**
+**Mapping SQL Data Types to Java Data Types**
 
 https://www.service-architecture.com/articles/database/mapping_sql_and_java_data_types.html
 

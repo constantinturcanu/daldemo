@@ -10,6 +10,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Random;
 
 public class JpqlDemo {
 
@@ -48,7 +49,11 @@ public class JpqlDemo {
     public void updateEmployeeJpqlTest() {
         int lastEmployeeNumber = EmployeesJpqlDao.getLastEmployeeNumber();
         Employee lastAddedEmployee = EmployeesJpqlDao.selectEmployeeWhereEmployeeNumber(lastEmployeeNumber);
-        String newLastName = "Jpql_Update";
+        System.out.println("lastAddedEmployee");
+        System.out.println(lastAddedEmployee);
+
+        Random random = new Random();
+        String newLastName = "Jooq_Update_" + random.nextInt(100);
 
         EmployeesJpqlDao.updateEmployeeLastNameWhereFirstNameAndLastName(
                 lastAddedEmployee.getFirstName(),
@@ -56,6 +61,9 @@ public class JpqlDemo {
                 newLastName);
 
         Employee updatedEmployee = EmployeesJpqlDao.selectEmployeeWhereEmployeeNumber(lastEmployeeNumber);
+
+        System.out.println("updatedEmployee");
+        System.out.println(updatedEmployee);
 
         Assert.assertEquals(updatedEmployee.getLastName(), newLastName,
                 "The last_name column was not updated for employee.");
