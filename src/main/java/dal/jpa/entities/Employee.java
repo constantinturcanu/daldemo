@@ -1,8 +1,5 @@
 package dal.jpa.entities;
 
-import lombok.Data;
-import lombok.ToString;
-
 import java.io.Serializable;
 import javax.persistence.*;
 import java.util.Date;
@@ -18,12 +15,6 @@ import java.util.Date;
 public class Employee implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-//	@GeneratedValue(strategy = GenerationType.SEQUENCE)
-//	@SequenceGenerator(name="EMPLOYEES_EMPNO_GENERATOR", sequenceName="JPA_DEMO_SEQUENCE")
-//	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="EMPLOYEES_EMPNO_GENERATOR")
-//	@SequenceGenerator(name = "mySeqGen", sequenceName = "mySeq", initialValue = 600000, allocationSize = 10000)
-//	@GeneratedValue(generator = "mySeqGen")
-//	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Id
 	@Column(name="emp_no")
 	private int empNo;
@@ -98,14 +89,9 @@ public class Employee implements Serializable {
 
 	@Override
 	public String toString() {
-		return String.format(
-				"emp_no     birth_date     first_name          last_name        gender    hire_date\n" +
-				"%-11s%-15s%-20s%-17s%-10s%s",
-				empNo,
-				birthDate,
-				firstName,
-				lastName,
-				gender,
-				hireDate);
+		String format = "%-11s%-15s%-20s%-17s%-10s%s";
+		return	String.format(format, "emp_no", "birth_date", "first_name", "last_name", "gender", "hire_date") + "\n" +
+				String.format(format, empNo, birthDate, firstName, lastName, gender, hireDate);
 	}
+
 }
