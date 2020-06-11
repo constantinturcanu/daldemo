@@ -29,6 +29,9 @@ public class JpqlDemo {
 
         Employee actualEmployee = EmployeesJpqlDao.selectEmployeeWhereEmployeeNumber(createdEmployeeNumber);
 
+        System.out.println("The following employee was created");
+        System.out.println(actualEmployee);
+
         Assert.assertNotNull(actualEmployee, "The employee was not created successfully in database.");
     }
 
@@ -39,6 +42,9 @@ public class JpqlDemo {
         String lastName = "Haddadi";
 
         List<Employee> foundEmployees = EmployeesJpqlDao.selectEmployeeWhereFirstNameAndLastName(firstName, lastName);
+
+        System.out.println("foundEmployees");
+        System.out.println(foundEmployees);
 
         Assert.assertTrue(foundEmployees.size() > 0,
                 String.format("Found no employee named %s %s.", firstName, lastName) );
@@ -74,6 +80,8 @@ public class JpqlDemo {
     @Test
     public void deleteEmployeeJpqlTest() {
         int lastEmployeeNumber = EmployeesJpqlDao.getLastEmployeeNumber();
+        System.out.println("The following employee will be deleted from database");
+        System.out.println(lastEmployeeNumber);
         int deletedRowsCount = EmployeesJpqlDao.deleteEmployeeWhereEmployeeNumber(lastEmployeeNumber);
 
         Assert.assertEquals(deletedRowsCount, 1, "No rows were deleted.");

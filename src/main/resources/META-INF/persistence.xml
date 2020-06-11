@@ -24,7 +24,7 @@
 			<property name="hibernate.connection.username" value="demo_user"/>
 			<property name="hibernate.connection.password" value="parola"/>
 			<property name="hibernate.default_schema" value="employees"/>
-			<property name="hibernate.show_sql" value="true"/>
+			<property name="hibernate.show_sql" value="false"/>
 			<property name="hibernate.format_sql" value="false"/>
 			<property name="hibernate.hbm2ddl.auto" value="validate"/>
 		</properties>

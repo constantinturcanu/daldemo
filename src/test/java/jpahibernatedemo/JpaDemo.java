@@ -26,7 +26,18 @@ public class JpaDemo {
         String gender = "F";
         Date hireDate = simpleDateFormat.parse("2015-5-15");
 
-        EmployeesJpaDao.persistEmployee(birthDate, firstName, lastName, gender, hireDate);
+        int employeeNumber = EmployeesJpaDao.persistEmployee(birthDate, firstName, lastName, gender, hireDate);
+
+        Employee createdEmployee = EmployeesJpaDao.findEmployee(employeeNumber);
+        System.out.println("The following employee was created");
+        System.out.println(createdEmployee);
+
+        Assert.assertEquals(createdEmployee.getEmpNo(), employeeNumber, "employeeNumber is not correct in database.");
+        Assert.assertEquals(createdEmployee.getBirthDate(), birthDate, "birthDate is not correct in database.");
+        Assert.assertEquals(createdEmployee.getFirstName(), firstName, "firstName is not correct in database.");
+        Assert.assertEquals(createdEmployee.getLastName(), lastName, "lastName is not correct in database.");
+        Assert.assertEquals(createdEmployee.getGender(), gender, "gender is not correct in database.");
+        Assert.assertEquals(createdEmployee.getHireDate(), hireDate, "hireDate is not correct in database.");
 
     }
 
@@ -42,6 +53,8 @@ public class JpaDemo {
         int employeeNumber = EmployeesJpaDao.persistEmployee(birthDate, firstName, lastName, gender, hireDate);
 
         Employee employee = EmployeesJpaDao.findEmployee(employeeNumber);
+        System.out.println("Read employee");
+        System.out.println(employee);
 
         Assert.assertEquals(employee.getEmpNo(), employeeNumber, "Employee Number is wrong in database;");
         Assert.assertEquals(employee.getBirthDate(), birthDate, "Birth Date is wrong in database;");
@@ -77,6 +90,9 @@ public class JpaDemo {
     @Test
     public void deleteEmployeeJpaTest() {
         int employeeNumber = EmployeesJpqlDao.getLastEmployeeNumber();
+        System.out.println("The following employee will be deleted from database");
+        System.out.println(EmployeesJpqlDao.selectEmployeeWhereEmployeeNumber(employeeNumber));
+
         EmployeesJpaDao.removeEmployee(employeeNumber);
 
         Assert.assertTrue(!EmployeesJpaDao.isEmployeeInDatabase(employeeNumber));

@@ -5,6 +5,8 @@
 
 **Install Ubuntu image on VirtualBox**
 
+**Java SE Development Kit 8**
+https://www.oracle.com/java/technologies/javase/javase-jdk8-downloads.html
 
 ### MySql Database
 
@@ -31,22 +33,19 @@ https://downloads.mysql.com/archives/get/p/3/file/mysql-connector-java-5.1.48.zi
 
 
 ```
-constantin@constantin-VirtualBox:/usr/share/java$ ls -l /usr/share/java/mysql-connector-java-8.0.20.jar 
+VirtualBox:/usr/share/java$ ls -l /usr/share/java/mysql-connector-java-8.0.20.jar 
 -rw-r--r-- 1 root root 2385581 mar  9 12:46 mysql-connector-java-8.0.20.jar
-constantin@constantin-VirtualBox:/usr/share/java$
+irtualBox:/usr/share/java$
 ```
 
 
+**HeidiSQL**
+
+https://www.heidisql.com/download.php
 
 
 
-**Java SE Development Kit 8**
-https://www.oracle.com/java/technologies/javase/javase-jdk8-downloads.html
-
-
-**Eclipse**:
- 
-Eclipse IDE for Enterprise Java Developers
+**Eclipse IDE for Enterprise Java Developers**
 
 https://www.eclipse.org/downloads/download.php?file=/technology/epp/downloads/release/2020-03/R/eclipse-jee-2020-03-R-incubation-win32-x86_64.zip
 
@@ -101,9 +100,10 @@ https://www.jooq.org/doc/3.13/manual/getting-started/tutorials/jooq-in-7-steps/j
 
 **Note:**  On Linux: Use ":" instead of ";" to separate jar files list
 
-`constantin@constantin-VirtualBox:~/Downloads/jOOQ-3.13.2/jOOQ-lib$ java -classpath jooq-3.13.2.jar:jooq-meta-3.13.2.jar:jooq-codegen-3.13.2.jar:reactive-streams-1.0.2.jar:mysql-connector-java-5.1.48.jar:. org.jooq.codegen.GenerationTool demo.xml` 
+`VirtualBox:~/Downloads/jOOQ-3.13.2/jOOQ-lib$ java -classpath jooq-3.13.2.jar:jooq-meta-3.13.2.jar:jooq-codegen-3.13.2.jar:reactive-streams-1.0.2.jar:mysql-connector-java-5.1.48.jar:. org.jooq.codegen.GenerationTool demo.xml` 
 
 
+## Useful resources
 
 **JPQL Exmples**:  
 https://en.wikibooks.org/wiki/Java_Persistence/JPQL

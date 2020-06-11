@@ -98,13 +98,9 @@ public class Employee implements Serializable {
 
 	@Override
 	public String toString() {
-		return String.format("emp_no\t\t" +
-				"birth_date\t\t" +
-				"first_name\t\t" +
-				"last_name\t\t\t" +
-				"gender\t" +
-				"hire_date\t\t\n" +
-				"%s\t\t%s\t\t%s\t%s\t\t%s\t\t%s",
+		return String.format(
+				"emp_no     birth_date     first_name          last_name        gender    hire_date\n" +
+				"%-11s%-15s%-20s%-17s%-10s%s",
 				empNo,
 				birthDate,
 				firstName,
