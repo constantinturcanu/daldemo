@@ -1,4 +1,4 @@
-# Data Access Layer - Tabara de Testare - Demo
+# Data Access Layer for Test Automation
 
 
 ## Resources / Prerequisites installation
