@@ -1,6 +1,6 @@
 # Data Access Layer for Test Automation
 
-This code was written for demo purposes for a presentation I've done at a local testers community meetup. It is on Youtube: https://youtu.be/q4HYbCabr3o?t=2009
+This code was written for demo purposes and used in a presentation I've done at a local testers community meetup. It is on Youtube: https://youtu.be/q4HYbCabr3o?t=2009
 
 
 ## Resources / Prerequisites installation
